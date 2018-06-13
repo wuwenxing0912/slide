@@ -1,14 +1,28 @@
 var n = 1
 init()
 
-setInterval(() => {
+var timer = setTimer()
 
-    leave(getImg(n)).one('transitionend', (e) => {
-        enter($(e.currentTarget))
-    });
-    current(getImg(n + 1))
-    n++
-}, 3000)
+function setTimer() {
+    return setInterval(() => {
+
+        leave(getImg(n)).one('transitionend', (e) => {
+            enter($(e.currentTarget))
+        });
+        current(getImg(n + 1))
+        n++
+    }, 3000)
+}
+
+
+document.addEventListener('visibilitychange', function(e) {
+    if (document.hidden) {
+        window.clearInterval(timer)
+    } else {
+        timer = setTimer()
+    }
+})
+
 
 function getImg(n) {
     return $(`.window>.images>img:nth-child(${x(n)})`)
