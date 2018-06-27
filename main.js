@@ -17,16 +17,18 @@ $('#next').on('click', function() {
 var timer = setInterval(function() {
     goToSlide(current + 1)
     smallImg(current)
-}, 2000)
+}, 3000)
 
 document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
         window.clearInterval(timer)
+            //console.log(1111)
     } else {
+        //console.log(2222)
         timer = setInterval(function() {
             goToSlide(current + 1)
             smallImg(current)
-        }, 2000)
+        }, 3000)
     }
 })
 
@@ -36,7 +38,7 @@ $('.container').on('mouseenter', function() {
     timer = setInterval(function() {
         goToSlide(current + 1)
         smallImg(current)
-    }, 2000)
+    }, 3000)
 })
 
 function makeFakeSlides() {
@@ -66,14 +68,14 @@ function goToSlide(index) {
         index = buttons.length - 1
     }
 
-    console.log('current', 'index')
-    console.log(current, index)
+    //console.log('current', 'index')
+    //console.log(current, index)
 
     if (current === buttons.length - 1 && index === 0) {
         //最后一张到第一张
         slides.css({ transform: `translateX(${-(buttons.length + 1 )*400}px)` }).
         one('transitionend', function() {
-            slides.hide().offset()
+            slides.hide().offset() // .offset() 可以触发 re-layout，这是一个高级技术，删掉这行你就会发现 bug，所以只能加上
             slides.css({ transform: `translateX(${-(index + 1 )*400}px)` }).show()
         })
     } else if (current === 0 && index === buttons.length - 1) {
