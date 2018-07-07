@@ -1,5 +1,5 @@
 var slides = $('#slides')
-var buttons = $('#buttonWrapper>button')
+var buttons = $('#buttonWrapper>div')
 var images = slides.children('img')
 var current = 0
 
@@ -49,7 +49,7 @@ function makeFakeSlides() {
 }
 
 function bindEvents() {
-    $('#buttonWrapper').on('click', 'button', function(e) {
+    $('#buttonWrapper').on('click', 'div', function(e) {
         var button = $(e.currentTarget)
         var index = button.index()
         goToSlide(index)
@@ -58,7 +58,7 @@ function bindEvents() {
 }
 
 function smallImg(index) {
-    buttons.eq(index).addClass('active').siblings('button').removeClass('active')
+    buttons.eq(index).addClass('active').siblings('div').removeClass('active')
 }
 
 function goToSlide(index) {
