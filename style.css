@@ -16,7 +16,7 @@
 
 .images {
     display: flex;
-    transition: all 1.5s;
+    transition: all 2s;
 }
 
 .images>img {
